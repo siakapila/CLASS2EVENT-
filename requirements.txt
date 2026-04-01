@@ -8,3 +8,6 @@ alembic
 python-jose[cryptography]
 passlib[bcrypt]
 python-multipart
+boto3
+fastapi-mail
+email-validator
