@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.db.database import engine, Base
 from app.api.routes import auth, clubs, events, registrations, attendance, faculty
@@ -9,6 +10,14 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # For dev, update in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(auth.router)
