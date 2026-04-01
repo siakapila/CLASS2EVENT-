@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.core.config import settings
-from app.api.routes import auth, clubs, events
+from app.api.routes import auth, clubs, events, registrations
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -10,6 +10,7 @@ app = FastAPI(
 app.include_router(auth.router)
 app.include_router(clubs.router)
 app.include_router(events.router)
+app.include_router(registrations.router)
 
 @app.get("/")
 def root():
