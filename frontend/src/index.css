@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased overflow-x-hidden text-slate-100 bg-slate-950 font-body;
+  }
+  
+  /* Required for the background image to persist behind the app */
+  #root {
+    @apply min-h-screen flex flex-col;
+  }
+}
+
+@layer components {
+  /* Core Architectural Elements */
+  .glass {
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(24px) saturate(150%);
+    @apply rounded-3xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)];
+  }
+
+  .card {
+    @apply glass p-6 overflow-hidden relative transition-all duration-300;
+  }
+
+  /* Form Elements */
+  .input-field {
+    @apply w-full bg-slate-900/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-white/20 focus:bg-slate-900/60 transition-all duration-300;
+  }
+
+  /* Interactive Elements */
+  .btn-primary {
+    @apply relative overflow-hidden bg-white text-slate-950 font-bold px-8 py-3 rounded-xl shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply bg-white/5 border border-white/10 font-bold px-6 py-2 rounded-xl text-white transition-all duration-300 hover:bg-white/10 hover:border-white/20 active:scale-95;
+  }
+
+  /* Structural elements */
+  .ambient-overlay {
+    @apply fixed inset-0 z-[-1] pointer-events-none;
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.65) 0%,
+      rgba(23, 15, 30, 0.4) 100%
+    );
+  }
+}
+
+/* Custom minimal webkit scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
