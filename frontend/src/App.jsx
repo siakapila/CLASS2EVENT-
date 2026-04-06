@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Welcome from './pages/Welcome';
 import Auth from './pages/Auth';
+import Dashboard from './pages/Dashboard';
 import CustomCursor from './components/CustomCursor';
 
 function Background() {
@@ -25,8 +26,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/auth" element={<Auth />} />
-          {/* Dashboard placeholder redirect */}
-          <Route path="/dashboard" element={<Navigate to="/" replace />} />
+          {/* Dashboard route with metrics and and visuals */}
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>

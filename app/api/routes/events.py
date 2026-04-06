@@ -82,6 +82,26 @@ async def upload_payment_qr(
     return event
 
 @router.get("/", response_model=List[EventResponse])
-def get_all_events(db: Session = Depends(get_db)):
-    events = db.query(Event).all()
+def get_all_events(
+    search: str = None,
+    club_id: UUID = None,
+    is_outhouse: bool = None,
+    db: Session = Depends(get_db)
+):
+    query = db.query(Event)
+    
+    if search:
+        # Use database indexes already created for fast search
+        query = query.filter(
+            (Event.title.ilike(f"%{search}%")) | 
+            (Event.description.ilike(f"%{search}%"))
+        )
+    
+    if club_id:
+        query = query.filter(Event.club_id == club_id)
+        
+    if is_outhouse is not None:
+        query = query.filter(Event.is_outhouse == is_outhouse)
+        
+    events = query.order_by(Event.date.asc()).all()
     return events

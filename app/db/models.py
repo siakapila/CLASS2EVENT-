@@ -78,8 +78,8 @@ class Event(Base):
     __tablename__ = "events"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    title = Column(String, nullable=False)
-    description = Column(Text)
+    title = Column(String, nullable=False, index=True)
+    description = Column(Text, index=True)
     how_to_play = Column(Text)
     is_outhouse = Column(Boolean, default=False)
     walk_ins_allowed = Column(Boolean, default=False)
